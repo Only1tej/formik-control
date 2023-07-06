@@ -31,12 +31,14 @@ function LoginForm() {
               type="email"
               label="Email"
               name="email"
+              placeholder="Email"
             />
             <FormikControl
               control="input"
               type="password"
               label="Password"
               name="password"
+              placeholder="Password"
             />
             <button type="submit" disabled={!formik.isValid}>
               Submit
