@@ -26,7 +26,7 @@ function RegistrationForm() {
     modeOfContact: Yup.string().required("Required"),
     phone: Yup.string().when("modeOfContact", {
       is: "telephonemoc",
-      then: Yup.string().required("Required"),
+      then: () => Yup.string().required("Required"),
     }),
   });
 
@@ -40,41 +40,43 @@ function RegistrationForm() {
       onSubmit={onSubmit}
     >
       {(formik) => {
-        <Form>
-          <FormikControl
-            control="input"
-            type="email"
-            label="Email"
-            name="email"
-          />
-          <FormikControl
-            control="input"
-            type="password"
-            label="Password"
-            name="password"
-          />
-          <FormikControl
-            control="input"
-            type="password"
-            label="Confirm Password"
-            name="confirmPassword"
-          />
-          <FormikControl
-            control="radio"
-            label="Mode of Contact"
-            name="modeOfContact"
-            options={options}
-          />
-          <FormikControl
-            control="input"
-            type="text"
-            label="Phone"
-            name="phone"
-          />
-          <button type="submit" disabled={!formik.isValid}>
-            Submit
-          </button>
-        </Form>;
+        return (
+          <Form>
+            <FormikControl
+              control="input"
+              type="email"
+              label="Email"
+              name="email"
+            />
+            <FormikControl
+              control="input"
+              type="password"
+              label="Password"
+              name="password"
+            />
+            <FormikControl
+              control="input"
+              type="password"
+              label="Confirm Password"
+              name="confirmPassword"
+            />
+            <FormikControl
+              control="radio"
+              label="Mode of Contact"
+              name="modeOfContact"
+              options={options}
+            />
+            <FormikControl
+              control="input"
+              type="text"
+              label="Phone number"
+              name="phone"
+            />
+            <button type="submit" disabled={!formik.isValid}>
+              Submit
+            </button>
+          </Form>
+        );
       }}
     </Formik>
   );
